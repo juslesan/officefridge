@@ -17,7 +17,11 @@ class App extends Component {
     const sub = await client.subscribe(
       {
           stream: process.env.REACT_APP_STREAM_ID,
-          resend_from_time: (Date.now()-86400000) // Last 24h
+          resend: {
+            from: {
+              timestamp: (Date.now()-86400000) // Last 24h
+            }
+          }
       },
       (message, metadata) => {
         // console.log(new Date(message.timestamp))
@@ -29,6 +33,9 @@ class App extends Component {
     )
     sub.on('subscribed', () => {
       console.log(`Subscribed to ${sub.streamId}`)
+    })
+    sub.on('unsubscribed', () => {
+      console.log(`Unsubscribed from ${sub.streamId}`)
     })
   }
   subscribe()
