@@ -44,7 +44,7 @@ class App extends Component {
 
   renderOpened = (opened) => {
     return (
-      <div className="opened">
+      <div className="opened" key={opened.timestamp + opened.deviceUuid}>
         <p style={{fontWeight: 'bold', fontSize: "1.4vw"}}>{new Date(opened.timestamp).toString()}</p>
         <p>Ruuvi id: {opened.deviceUuid}</p>
         <p>G-force of event: {opened.gForce}</p>
