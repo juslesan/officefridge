@@ -68,6 +68,12 @@ To connect your cloudant database to Notebook you should first set up some read 
 And lastly here is an example on how to do data visualization, and why the sliding z-score algorithm works (most of the time) for this use case.
 ![graph](./docs/notebook-graph.png)
 
-You can also do hhtp requests to the cloud's Node-Red instance from Notebook. You could use this to pass ML model updates to the cloud and the edge. The edge flow does periodic requests to the cloud instance to update the zScores threshold. You could implement a similar pipeline for more Machine learning heavy use cases. This way you could do fast decisions on the edge based on machine learned models, and act out the decisions by actuators to the real world.
+You can also do http requests to the cloud's Node-Red instance from Notebook. You could use this to pass ML model updates to the cloud and the edge. The edge flow does periodic requests to the cloud instance to update the zScores threshold. You could implement a similar pipeline for more Machine learning heavy use cases. This way you could do fast decisions on the edge based on machine learned models, and act out the decisions by actuators to the real world.
+
+The passing of machine learning models can be done using Spark's MLlibs JSON exportation. You could then implement the machine learning model in the edge based on the values in the JSON export.
+
+## React App
+A React app that displays the anomaly detected data points was implemented as there are no real actuators in the current architecture. A running vesion of the app can be found [here](https://sujuwa-fridge.herokuapp.com/). The app simply subscribes to the stream of anomaly detected data and renders it to the site.
 
 All in all, the architecture is a working PoC pipeline of using Streamr in a cognitive IoT architecture. Any further developement ideas for this use case are welcome.
+
